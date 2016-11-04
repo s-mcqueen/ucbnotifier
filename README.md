@@ -8,3 +8,5 @@ Setup:
 * pip install -r requirements.txt # do this in a venv
 * python notifier.py # this blocks and will keep running
 * go run this on a server somewhere!
+
+Note to self: I have gcloud, kubectl, docker, virtualenv installed which are all required for how I'm running and deploying this
