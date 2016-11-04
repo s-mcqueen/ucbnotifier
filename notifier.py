@@ -53,7 +53,7 @@ def connect_and_listen():
         listener=listener)
 
     # Wait for tweets and act on them. This call is syncronous and blocks.
-    stream.filter(follow=[UCB_NYC_USER_ID])
+    stream.filter(follow=[TEST_USER_ID])
 
 
 if __name__ == '__main__':
