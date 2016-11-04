@@ -1,3 +1,9 @@
+##### Application specific:
+
+secrets.py
+
+##### Github's standard python .gitignore :
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
