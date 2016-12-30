@@ -1,6 +1,6 @@
 # ucbnotifier
 
-Sends SMS when UCB Improv 101 classes in NYC open up. Easily changable to listen to any
+Sends SMS when UCB Improv classes in NYC open up. Easily changable to listen to any
 stream of tweets, apply an arbitrary text filter and send sms notifications.
 
 Setup:
