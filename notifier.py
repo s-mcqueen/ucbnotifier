@@ -1,4 +1,6 @@
-"""Listens to UCB NYC tweets and sends sms notifications."""
+"""Listens to tweets and sends sms notifications."""
+
+# TODO: write tests
 
 import secrets
 import tweepy
@@ -21,19 +23,19 @@ class SMSUser(object):
         self.notify_number = notify_number
         self.relevant_text = relevant_text
 
-    def handle(text):
+    def handle(self, text):
         if self._cares_about(text):
             self._send(text)
 
-    def _cares_about(text):
+    def _cares_about(self, text):
         return self.relevant_text in text
 
-    def _send(text):
+    def _send(self, text):
         try:
             TWILIO_CLIENT.messages.create(
                 body=text,
                 to=self.notify_number,
-                from_=secrets.TWILIO_PHONE_NUMBER))
+                from_=secrets.TWILIO_PHONE_NUMBER)
         except TwilioRestException as e:
             print e
 
@@ -46,8 +48,12 @@ class UserListener(tweepy.StreamListener):
         Args:
             users: A list of SMSUsers
         """
-        super(SMSListener, self).__init__()
+        super(UserListener, self).__init__()
         self.users = users
+
+    def on_error(self, status_code):
+        # TODO: this is useless, do something smarter here
+        print status_code
 
     def on_status(self, status):
         """Overrides base class; called when a new tweet is pushed to us."""
@@ -56,7 +62,7 @@ class UserListener(tweepy.StreamListener):
 
 
 # Twitter user ids
-UCB_NYC_USER_ID = '289051336'
+UCB_NYC_USER_ID = '289051336'  # @UCBClassesNYC
 ACCOUNTS_TO_LISTENERS = {
     UCB_NYC_USER_ID: SMSUser('+12067187746', 'Improv 201'),  # Sean
     UCB_NYC_USER_ID: SMSUser('+12068544595', 'Improv 101')   # Isaac
